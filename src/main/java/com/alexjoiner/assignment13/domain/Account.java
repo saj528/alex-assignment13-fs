@@ -25,7 +25,7 @@ public class Account {
     //Child side of many to many
     //mappedBy points back to the field name of the parent
     //which in this case is `accounts`
-    @ManyToMany(mappedBy = "accounts")
+    @ManyToMany(mappedBy = "accounts", cascade = CascadeType.PERSIST)
     private List<User> users = new ArrayList<>();
 
 

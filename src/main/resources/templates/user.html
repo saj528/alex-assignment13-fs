@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Users</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
 </head>
 <body>
 <h1>Users</h1>
 <div>
-  <form action="" method="post">
-    <div>
-      Username: <input type="text" th:field="${user.username}">
+    <form action="" method="post">
+        <input type="hidden" th:field="${user.id}" th:value="${user.id}"/>
+        <div>
+            Username: <input type="text" th:field="${user.username}">
+        </div>
+        <div>
+            Password: <input type="password" th:field="${user.password}">
+        </div>
+        <div>
+            Full Name: <input type="text" th:field="${user.name}">
+        </div>
+        <hr>
+        <div>
+            Address Line 1: <input type="text" th:field="${address.addressLine1}">
+        </div>
+        <div>
+            Address Line 2: <input type="text" th:field="${address.addressLine2}">
+        </div>
+        <div>
+            City: <input type="text" th:field="${address.city}">
+        </div>
+        <div>
+            Region: <input type="text" th:field="${address.region}">
+        </div>
+        <div>
+            Country: <input type="text" th:field="${address.country}">
+        </div>
+        <div>
+            ZipCode: <input type="text" th:field="${address.zipCode}">
+        </div>
+
+        <div>
+            <input type="submit" value="Update User">
+        </div>
+    </form>
+    <form th:action="@{/users/{userId}/delete(userId=${user.id})}" method="post">
+        <input type="submit" value="Delete User Account"/>
+    </form>
+    <hr>
+    <h3>Accounts</h3>
+    <div th:each="account : ${user.accounts}">
+        <span><a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.id},accountId=${account.id})}" th:text="${account.accountName}"></a></span><br/>
     </div>
+    <form th:action="@{/users/{userId}/create-account(userId=${user.id})}" method="post">
+        <input type="submit" value="Create New Bank Account"/>
+    </form>
+
     <div>
-      Password: <input type="password" th:field="${user.password}">
+        <a href="/users">Back</a>
     </div>
-    <div>
-      Full Name: <input type="text" th:field="${user.name}">
-    </div>
-    <div>
-      <input type="submit" value="Update User">
-    </div>
-  </form>
-  <hr>
 </div>
 </body>
 </html>

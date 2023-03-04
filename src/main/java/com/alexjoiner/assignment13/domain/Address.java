@@ -10,7 +10,7 @@ public class Address {
 
     //child side of one to one
     //MapsId maps the User id to the id field in this child class
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @MapsId
     private User user;
     @Column(length = 200)
