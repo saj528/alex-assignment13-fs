@@ -9,6 +9,7 @@
 <div>
     <form action="" method="post">
         <input type="hidden" th:field="${user.id}" th:value="${user.id}"/>
+        <input type="hidden" th:field="${user.accounts}" th:value="${user.accounts}"/>
         <div>
             Username: <input type="text" th:field="${user.username}">
         </div>
