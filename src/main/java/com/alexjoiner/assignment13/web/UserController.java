@@ -74,6 +74,9 @@ public class UserController {
     public String updateOneUser(User user, Address address) {
         user.setAddress(address);
         address.setUser(user);
+        if(user.getPassword().isEmpty()){
+            user.setPassword(userService.findById(user.getId()).getPassword());
+        }
         user = userService.saveUser(user);
         addressService.saveAddress(address);
         return "redirect:/users/" + user.getId();
