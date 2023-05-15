@@ -49,7 +49,13 @@ public class UserController {
     private String getAllUsers(ModelMap modelMap) {
         Set<User> users = userService.findall();
         modelMap.put("users", users);
-        return "users";
+
+        if(users.size() > 1){
+            return "users";
+        }else{
+            return "redirect:/users/" + users.stream().findFirst().get().getId();
+        }
+
     }
 
     @GetMapping("/users/{userId}")
